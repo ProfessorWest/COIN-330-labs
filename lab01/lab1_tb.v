@@ -27,5 +27,4 @@ This test bench is sufficient because it tests all possible combination
 of inputs into the circuit and result in correct outputs.
 */
 
-
 endmodule
