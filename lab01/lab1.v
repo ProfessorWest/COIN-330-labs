@@ -9,5 +9,4 @@ not(notB, InB);
 
 and(BC, InC, notB);
 or(OutF, BC, InA);
-
 endmodule
