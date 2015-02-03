@@ -22,4 +22,10 @@ initial begin
   #1 $display("A: %b, B: %b, C: %b,  Out: %b", In[0], In[1], In[2], Out);
 end
 
+/*
+This test bench is sufficient because it tests all possible combination
+of inputs into the circuit and result in correct outputs.
+*/
+
+
 endmodule
