@@ -1,0 +1,15 @@
+module lab01(Fout, a, b, c);
+input a, b, c;
+output Fout;
+
+wire wrie0, NotB;
+
+
+not(NotB, b);
+and (wire0, NotB, c);
+or(Fout, a, wire0);
+
+
+
+
+endmodule

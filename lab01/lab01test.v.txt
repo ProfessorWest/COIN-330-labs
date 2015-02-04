@@ -1,0 +1,49 @@
+module lab01test;
+wire out;
+reg a, b, c;
+
+
+lab01 lab01ts(out,a, b, c);
+
+initial begin
+c=1'b1;
+b=1'b1;
+a=1'b1;
+#1 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=1'b1;
+b=1'b1;
+a=0'b1;
+#2 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=1'b1;
+b=0'b1;
+a=1'b1;
+#3 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=1'b1;
+b=0'b1;
+a=0'b1;
+#4 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=0'b1;
+b=1'b1;
+a=1'b1;
+#5 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=0'b1;
+b=1'b1;
+a=0'b1;
+#6 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=0'b1;
+b=0'b1;
+a=1'b1;
+#7 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+
+c=0'b1;
+b=0'b1;
+a=0'b1;
+#8 $display("a=%b,b=%b, c=%b, out=%b",a,b,c,out);
+end 
+endmodule
