@@ -1,0 +1,33 @@
+#! /usr/local/Cellar/icarus-verilog/0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fbc82c087c0 .scope module, "bitadder_test" "bitadder_test" 2 1;
+ .timescale 0 0;
+v0x7fbc82c18770_0 .var "A", 31 0;
+v0x7fbc82c18820_0 .var "B", 31 0;
+v0x7fbc82c188c0_0 .net "sum", 31 0, L_0x7fbc82c18980; 1 drivers
+S_0x7fbc82c088a0 .scope module, "uut" "bitadder" 2 5, 3 1, S_0x7fbc82c087c0;
+ .timescale 0 0;
+v0x7fbc82c05f10_0 .net "A", 31 0, v0x7fbc82c18770_0; 1 drivers
+v0x7fbc82c18660_0 .net "B", 31 0, v0x7fbc82c18820_0; 1 drivers
+v0x7fbc82c186f0_0 .alias "sum", 31 0, v0x7fbc82c188c0_0;
+L_0x7fbc82c18980 .arith/sum 32, v0x7fbc82c18770_0, v0x7fbc82c18820_0;
+    .scope S_0x7fbc82c087c0;
+T_0 ;
+    %movi 8, 5, 32;
+    %set/v v0x7fbc82c18770_0, 8, 32;
+    %movi 8, 1, 32;
+    %set/v v0x7fbc82c18820_0, 8, 32;
+    %delay 1, 0;
+    %vpi_call 2 11 "$display", "A = %b, B = %b, out = %b", v0x7fbc82c18770_0, v0x7fbc82c18820_0, v0x7fbc82c188c0_0;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "bitadder_test.v";
+    "bitadder.v";
