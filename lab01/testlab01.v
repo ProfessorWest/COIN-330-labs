@@ -16,7 +16,6 @@ initial begin
 	 * 1'b0, which create a 1 bit field with the value 0.
 	 * Due to how Icarus Verilog works it made the fields 0.
 	 * Please make sure you understand this moving forward.
-	 * (-5pts)
 	 */
 	inA = 0'b1;
 	inB = 0'b1;
