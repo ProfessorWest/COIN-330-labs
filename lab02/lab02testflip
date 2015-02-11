@@ -1,0 +1,17 @@
+`timescale 100ns/100ps
+module lab02testflip;
+wire out, notout;
+reg a;
+reg clk=0;
+always #1 clk=!clk;
+
+lab02flip lab02ts(a, clk, out, notout);
+
+initial begin
+a=1'b1;
+ $monitor("a=%b, clk=%b, out=%b, notout=%b", a, $time,out notout);
+$dumpfile("lab02testflip.vcd");
+$dumpvars(0, lab02testflip);
+
+end
+endmodule
