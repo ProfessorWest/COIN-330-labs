@@ -1,0 +1,15 @@
+module lab02(Qout, nQout, In1);
+input In1;
+output Qout, nQout;
+
+wire Nin1;
+
+
+not(Nin1, In1);
+nand(Qout, Nin1, nQout);
+
+nand(nQout, Qout, In1);
+
+
+
+endmodule
