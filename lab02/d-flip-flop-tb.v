@@ -7,7 +7,9 @@ reg In, clk = 0;
 dFlipFlop uut(In, clk, slaveQ, slaveQ_);
 
 //declare clock
-always #10 clk = !clk; //toggle clock every 10 ticks
+always begin
+#10 clk = !clk; //toggle clock every 10 ticks
+end
 
 initial begin
   In = 1'b1;
