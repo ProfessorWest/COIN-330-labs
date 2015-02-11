@@ -4,9 +4,9 @@ module dFlipFlopTb();
 wire slaveQ, slaveQ_;
 reg In, clk = 0;
 
-//declare clock
-dFlipFlop uut(In, clock, slaveQ, slaveQ_);
+dFlipFlop uut(In, clk, slaveQ, slaveQ_);
 
+//declare clock
 always #10 clk = !clk; //toggle clock every 10 ticks
 
 initial begin
