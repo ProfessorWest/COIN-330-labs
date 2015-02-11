@@ -1,0 +1,14 @@
+module lab02test;
+wire out, nout;
+reg a;
+
+lab02 lab02ts(out, nout, a);
+
+initial begin
+a=1'b1;
+#1 $display("a=%b, out=%b, nout=%b",a, out, nout); 
+
+a=1'b0;
+#2 $display("a=%b, out=%b, nout=%b",a, out, nout); 
+end
+endmodule
