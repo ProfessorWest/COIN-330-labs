@@ -1,4 +1,4 @@
-`timescale 100ns/100ps
+`timescale 10ns/10ps
 module dFlipFlopTb();
 
 wire slaveQ, slaveQ_;
@@ -8,15 +8,18 @@ dFlipFlop uut(In, clk, slaveQ, slaveQ_);
 
 //declare clock
 always begin
-#10 clk = !clk; //toggle clock every 10 ticks
+#1 clk = !clk; //toggle clock every 10 ticks
 end
 
 initial begin
-  In = 1'b1;
-  $monitor("At time %b, D = %b, Q = %b, Q' = %b", clk,
-   In, slaveQ, slaveQ_);
+  #1 In= 1'b1;
+  $monitor("At time %t, clk = %b, D = %b, Q = %b, Q' = %b", $time,
+   clk, In, slaveQ, slaveQ_);
   $dumpfile("DFlipFlop.vcd");
   $dumpvars(0, dFlipFlopTb);
+  #2 In = 1'b0;
+  #2 In = 1'b1;
+  #10 $finish();
 end
 
 endmodule
