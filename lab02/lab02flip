@@ -1,0 +1,24 @@
+module lab02flip(Qout, nQout, In1, clk);
+input In1, clk;
+output Qout, nQout;
+
+wire nclk, nIn1, Innclk, nInnclk, wire5, wire6, wire7, wire8, wire9;
+
+not(nclk, clk);
+not(nIn1,In1);
+
+nand(Innclk, In1, nclk);
+nand(nInnclk, nclk, nIn1);
+
+nand(wire5, wire6, Innclk);
+nand(wire6, wire5, nInnclk);
+
+not(wire7, wire5);
+nand(wire8, clk, wire5);
+nand(wire9, wire7, clk);
+
+nand(Qout, nQout, wire8);
+nand(nQout, Qout, wire9);
+
+
+endmodule
