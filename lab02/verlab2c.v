@@ -10,6 +10,7 @@ wire [0:0] clknot;
 wire [0:0] a;
 wire [0:0] b;
 wire [0:0] c;
+wire [0:0] cnot;
 wire [0:0] d;
 wire [0:0] e;
 wire [0:0] f; 
