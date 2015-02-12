@@ -1,6 +1,6 @@
 //Martin Hutchens
 //Lab2 d:
-`timescale 10ns/10ps
+`timescale 10ns/1ns
 module verlab2ctest();
 
 reg clk = 0;
@@ -15,6 +15,9 @@ initial begin
 	$monitor("At time %t, D = %b, Q = %b, Qnot = %b",$time,D,Q,Qnot);
 	$dumpfile("test.vcd");
 	$dumpvars(0,verlab2ctest);
+	#2 D=1'b0;
+	#2 D=1'b1;
+	#2 $finish();
 end
 endmodule
 
