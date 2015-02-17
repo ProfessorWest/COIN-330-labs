@@ -1,6 +1,6 @@
 module alu(A, B, op, eq, out);
   input [31:0] A, B;
-  input [2:0] op; // opcode
+  input [2:0] op; //opcode
   output [0:0] eq; // equality bit
   output [31:0] out; // output
 
