@@ -1,8 +1,8 @@
 module bitadder_test();
   reg [31:0] A, B;
-  output [31:0] sum; // output
+  output [31:0] sum,cout; // output
 
-  bitadder uut(A, B, sum);
+  Fulladder uut(A, B, sum);
 
   initial begin
     // add
