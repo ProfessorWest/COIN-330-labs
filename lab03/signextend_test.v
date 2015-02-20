@@ -5,7 +5,9 @@ module signextend_test();
   signextend uut(in, out);
 
   initial begin
-    in = 32'b101;
+    in = 16'b101;
+    #1 $display("in = %b, out = %b", in, out);
+    in = 16'b1000000000000101;
     #1 $display("in = %b, out = %b", in, out);
   end
 
