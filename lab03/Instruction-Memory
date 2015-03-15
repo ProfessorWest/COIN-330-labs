@@ -1,0 +1,17 @@
+module instructmem (clk, address, instruction);
+
+input		clk;
+input	[31:0]	add;
+output	[31:0]	instruction;
+
+reg	[31:0]	memAdd;
+reg	[31:0]	iM[0:255];
+
+initial
+	$readmemb ("memory.data", iM);
+
+always @(posedge clk) begin
+	memAdd = add;
+	instruction = iM[memAdd];
+end
+endmodule
