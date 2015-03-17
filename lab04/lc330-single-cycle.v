@@ -31,10 +31,10 @@ module lc330sc(clk, rst);
 	d3x8 decoder3x8 (instr[22],instr[23],instr[24],o[0],o[1],o[2],o[3],o[4],o[5],o[6],o[7]);
 	rom myRom(romOut,o);
 	mux3bit mux3Bit(mux3BOut,instr[2:0],instr[16:18],romOut[0]);
-	regfile8x32r2w1(instr[21:19], instr[18:16], mux3BOut, romOut[2], mux32BOut, outA, outB, clk, reset);
+	regfile8x32r2w1 myRegFile(instr[21:19], instr[18:16], mux3BOut, romOut[2], mux32BOut, outA, outB, clk, reset);
 	mux32bit muxALU(muxToALU, signExtOut, outB, romOut[3]);
 	alu myALU(outA, muxToALU, romOut[4], eq, ALUout);
-	datamem(ALUout, outB, romOut[5], romOut[6], memOut, clk, rst);
+	datamem myMem(ALUout, outB, romOut[5], romOut[6], memOut, clk, rst);
 	mux32bit mux32Bit(mux32BOut, memOut, ALUout, romOut[1]);
 	
 	
