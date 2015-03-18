@@ -55,7 +55,7 @@ module lc330sc(clk, rst);
         alu thealu(outa, mux4out, rom[2], sel, aluout);
         //alu
 
-        datamem data-memory(aluout, outb, rom[1], rom[0], dmemout, clk, rst);
+        datamem datamemory(aluout, outb, rom[1], rom[0], dmemout, clk, rst);
         //data memory
 
     always @(posedge clk, posedge rst) begin
