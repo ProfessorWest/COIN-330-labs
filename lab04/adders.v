@@ -18,9 +18,11 @@ module adder32(A, B, sum);
   output [32:0] cout;
   assign cout[0] = 0;
 
-  genvar i;
-  for(i = 0; i < 32; i = i+1) begin
-    adder uut(A[i], B[i], sum[i], cout[i], cout[i+1]);
-  end
+  generate
+    genvar i;
+    for(i = 0; i < 32; i = i+1) begin
+      adder uut(A[i], B[i], sum[i], cout[i], cout[i+1]);
+    end
+  endgenerate
 
 endmodule

@@ -22,10 +22,9 @@ module mux32bit(Out,A,B,Sel);
     input Sel;
 
     genvar i;
-    for(i=0;i<=31;i=i+1)
-      begin
-	mux2to1 uut(Out[i],A[i],B[i],Sel);
-      end
+    for(i=0;i<=31;i=i+1) begin
+	     mux2to1 uut(Out[i],A[i],B[i],Sel);
+    end
 
 endmodule
 

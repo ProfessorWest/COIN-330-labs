@@ -30,7 +30,7 @@ module lc330sc(clk, rst);
     wire [31:0] data_mem_out;
 
     adder32 clockIncrement(pc, one, nextPC);
-    
+
     instrmem instr_mem(pc, instr, clk, rst);
 
     signextend ex_instr(instr[15:0], sign_out);
