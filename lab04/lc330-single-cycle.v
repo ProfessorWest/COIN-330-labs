@@ -40,22 +40,22 @@ module lc330sc(clk, rst);
         rom myrom(romout,decodew);
         //rom
 
-        register-file regfile(instr[21:19],instr[18:16], mux3out, romout[4], regmuxout, outa, outb, clk, rst);
+        regfile8x32r2w1 regfile(instr[21:19],instr[18:16], mux3out, romout[4], regmuxout, outa, outb, clk, rst);
         //register file
 
-        mux3bit(mux3out, instr[18:16], instr[2:0], romout[6]);
+        mux3bit muxer(mux3out, instr[18:16], instr[2:0], romout[6]);
         //3 bit mux
 
-        mux32 regmux(regmuxout, dmemout, aluout, romout[5]);
+        mux32bit regmux(regmuxout, dmemout, aluout, romout[5]);
         //mux by register file
 
-        mux32 alumux(mux4out, extndout, outb, romout[3]);
+        mux32bit alumux(mux4out, extndout, outb, romout[3]);
         //mux between alu and reg-file
 
         alu thealu(outa, mux4out, rom[2], sel, aluout);
         //alu
 
-        data-memory(aluout, outb, rom[1], rom[0], dmemout, clk, rst);
+        datamem data-memory(aluout, outb, rom[1], rom[0], dmemout, clk, rst);
         //data memory
 
     always @(posedge clk, posedge rst) begin
