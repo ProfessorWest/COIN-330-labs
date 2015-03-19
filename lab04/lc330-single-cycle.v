@@ -28,7 +28,7 @@ module lc330sc(clk, rst);
         signextend xtnd(instr[15:0], extndout);
         //sign extend
 
-        mux32 m32(pcinput, extndout, nextpc, sel);
+        mux32bit m32(pcinput, extndout, nextpc, sel);
         //mux32
 
         adder32 stuff2(extndout, nextpc, adder2out);
