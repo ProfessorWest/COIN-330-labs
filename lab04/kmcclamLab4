@@ -1,0 +1,67 @@
+`timescale 1ns/1ps 
+
+// Little Computer 330 Single Cycle
+module lc330sc(clk, rst);
+    input clk;
+    input rst;
+
+    reg [31:0] pc;
+    reg [31:0] one;
+    wire [31:0] nextPC;
+    wire [31:0] instr;
+	wire [7:0] instruction;//stores the values for decoder
+	wire [31:0] rdA;//register data
+	wire [31:0] rdB;
+	wire [2:0] FirstMux;
+	wire [31:0] SecondMux;	
+	wire [31:0] signExt;
+	wire equality;
+	wire [31:0] aluOut;
+	wire [31:0] thirdMux;
+	wire [31:0] DMOut;
+
+	
+	d3x8 instruct (instr[24],instr[23],instr[22],instruction[0],instruction[1],instruction[2],instruction[3],instruction[4],instruction[5],instruction[6],instruction[7]);
+   	//get values for 3x8 decoder
+
+	signextend ext(instr[15:0],signExt);
+	//sign extend
+
+	mux3bit fMux (FirstMux,instr[18:16], instr[2:0],instruction[6]);
+	//first mux sending value to register file
+
+	regfile8x32r2w1 regs(instr[21:19],instr[18:16],FirstMux, instruction[2],muxOut,rdA,rdB,clk,rst)
+	//register file
+
+	mux32bit sMux (SecondMux, signExt, rdB, instruction[3]);
+	//second mux sending value to alu
+
+	alu aluRun (rdA, SecondMux, instruction[2], equality, aluOut);
+	//ALU
+
+	datamem DM(aluOut, rdB, instruction[1], instruction[0],DMOut, clk, rst);
+	//data memory	
+	
+	mux32bit tMux(ThirdMux, DMOut, aluOut, instruction[5]);
+
+	
+
+    always @(posedge clk, posedge rst) begin
+        if (rst == 1) begin
+            pc <= 32'b00000000000000000000000000000000;
+            one <= 32'b00000000000000000000000000000001;
+	end else begin
+	    //$display("pc = %b, one = %b, nextPC = ??", pc-1, one);
+            pc <= nextPC;
+	end
+    end
+
+    always @(instr) begin
+        if (instr[24:22] == 3'b110) begin
+	    $display("HALT instruction encountered, exiting...");
+	    $display("************END SIMULATION****************");
+	    $finish();
+	end
+    end
+
+endmodule
