@@ -2,7 +2,7 @@ CPU_FILES=instr-mem.v lc330-single-cycle.v adders.v d3x8.v rom.v mux.v register-
 TEST_FILE=lc330-single-cycle-tb.v
 
 all: assembler
-	iverilog ${CPU_FILES} ${TEST_FILE} && vvp a.out
+	iverilog *.v && vvp a.out
 
 assembler: a.c
 	gcc -O2 -o lc330-asm a.c

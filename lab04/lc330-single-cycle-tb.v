@@ -14,8 +14,8 @@ module lc330sstb();
 	$display("***********HOLD RESET LINE****************");
 	#10  // for 10 ticks
 	rst <= 1'b0; // release the reset line
-	$display("***********BEGIN SIMULATION***************");
-	#10 $finish(); // Remove once your PC+1 is working!
+	$display("***********BEGIN SIMULATION***************");	
+	//#50 $finish(); // Remove once your PC+1 is working!
     end
 
 endmodule

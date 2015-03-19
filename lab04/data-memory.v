@@ -18,7 +18,8 @@ module datamem(Ina, Inb, enable, readwrite, dataOut, clk, rst);
             $readmemh ("prg.bin", memory);
 	end 
 	if (readwrite && enable) begin
-	    memory[Ina] <= Inb;
+	    //memory[Inb] <= Ina; 
+		memory[Ina] <= Inb;
 	end
     end
 
