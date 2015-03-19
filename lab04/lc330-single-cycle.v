@@ -21,7 +21,7 @@ module lc330sc(clk, rst);
     //wires added
     wire [31:0]sign_out;
     wire [31:0]sign_pc_out;
-    wire [31:0]PC_adder;
+    wire [31:0]mux_to_pc_out;
     wire [0:0] isEqual; //from ALU
 
     //decoder output bits
@@ -37,19 +37,19 @@ module lc330sc(clk, rst);
     wire [31:0] ALU_out;
     wire [31:0] data_mem_out;
 
-    mux32bit mux_to_pc(nextPC, PC_adder, sign_pc_out, isEqual);
+    mux32bit mux_to_pc(mux_to_pc_out, sign_pc_out, nextPC, isEqual);
 
     instrmem instr_mem(pc, instr, clk, rst);
-    adder32 clockIncrement(pc, one, PC_adder);
+    adder32 clockIncrement(pc, one, nextPC);
 
     mux3bit instr_mux(instr_mux_out, instr[18:16], instr[2:0], rom_out[6]);
     mux32bit ALU_mem(ALU_mem_out, ALU_out, data_mem_out, rom_out[5]);
 
     signextend ex_instr(instr[15:0], sign_out);
-    regfile8x32r2w1 reg_file(instr[18:16], instr[21:19], instr_mux_out, rom_out[4], ALU_mem_out, reg_outA, reg_outB, clk, rst);
+    regfile8x32r2w1 reg_file(instr[21:19], instr[18:16], instr_mux_out, rom_out[4], ALU_mem_out, reg_outA, reg_outB, clk, rst);
 
 
-    mux32bit sign_reg(sign_reg_out, reg_outB, sign_out, rom_out[3]);
+    mux32bit sign_reg(sign_reg_out, sign_out, reg_outB, rom_out[3]);
 
     adder32 sign_adder(nextPC, sign_out, sign_pc_out);
     alu ALU(reg_outA, sign_reg_out, rom_out[2], isEqual, ALU_out);
