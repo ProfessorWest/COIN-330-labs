@@ -15,8 +15,8 @@ module datamem(Ina, Inb, enable, readwrite, dataOut, clk, rst);
 
     always @(posedge clk, posedge rst) begin
         if (rst == 1) begin
-            $readmemh ("prg.bin", memory);
-	end 
+            $readmemh ("programs/prg.bin", memory);
+	end
 	if (readwrite && enable) begin
 	    memory[Ina] <= Inb;
 	end
