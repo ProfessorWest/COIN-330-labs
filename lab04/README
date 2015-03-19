@@ -1,0 +1,2 @@
+Im not sure why everything works but sw does not store 5 in the second register. 
+It's the only thing that Iv found that does not work as intended.
