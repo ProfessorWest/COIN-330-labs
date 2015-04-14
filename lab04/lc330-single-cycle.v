@@ -26,7 +26,7 @@ module lc330sc(clk, rst);
 	adder32 addPC(one, pc, plusPC);
 	instrmem instruct(pc, instr, clk, rst);
 	signextend extend(instr[15:0], ext);
-	adder32 add2(plusPC ext, addtwo);
+	adder32 add2(plusPC, ext, addtwo);
 	mux32bit pcMux(nextPC,plusPC,addtwo,eq);
 	mux3bit Mux3(mux3out,instr[18:16],instr[2:0],romOut[6]);
 	d3x8 decoder(instr[24],instr[23],instr[22],out[0],out[1],out[2],out[3],out[4],out[5],out[6],out[7]);
