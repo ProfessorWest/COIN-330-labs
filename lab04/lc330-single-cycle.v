@@ -46,7 +46,7 @@ module lc330sc(clk, rst);
   mux32bit regMux2(.Out(regFileMuxInput2), .A(aluOutput), .B(dataMemoryOutput), .Sel(romData[5]));
 
   //regFile
-  regfile8x32r2w1 regFile(.inA(instr[21:19]), .inB(instr[18:16]), .dest(regFileMuxInput1), .en(romData[4]), .data(regFileMuxInput2), .outA(regFileOut0), .outB(regFileOut1), .clk(clk), .reset(rst));
+  regfile8x32r2w1 regFile(.inA(instr[18:16]), .inB(instr[21:19]), .dest(regFileMuxInput1), .en(romData[4]), .data(regFileMuxInput2), .outA(regFileOut0), .outB(regFileOut1), .clk(clk), .reset(rst));
 
   //aluMux
   mux32bit aluMux(.Out(aluMuxOutput), .A(signExt), .B(regFileOut1), .Sel(romData[3]));
