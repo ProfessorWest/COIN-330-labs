@@ -43,10 +43,10 @@ module lc330sc(clk, rst);
     adder32 clockIncrement(pc, one, nextPC);
 
     mux3bit instr_mux(instr_mux_out, instr[18:16], instr[2:0], rom_out[6]);
-    mux32bit ALU_mem(ALU_mem_out, ALU_out, data_mem_out, rom_out[5]);
+    mux32bit ALU_mem(ALU_mem_out, data_mem_out, ALU_out, rom_out[5]);
 
     signextend ex_instr(instr[15:0], sign_out);
-    regfile8x32r2w1 reg_file(instr[21:19], instr[18:16], instr_mux_out, rom_out[4], ALU_mem_out, reg_outA, reg_outB, clk, rst);
+    regfile8x32r2w1 reg_file(instr[18:16], instr[21:19], instr_mux_out, rom_out[4], ALU_mem_out, reg_outA, reg_outB, clk, rst);
 
 
     mux32bit sign_reg(sign_reg_out, sign_out, reg_outB, rom_out[3]);
